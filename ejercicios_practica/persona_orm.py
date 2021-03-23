@@ -73,3 +73,15 @@ def report(limit=0, offset=0):
         json_result_list.append(json_result)
 
     return json_result_list
+
+def age_report():
+    query = db.session.query(Persona)
+    query_results = query.all()
+
+    if query_results is None or len(query_results) == 0:
+        return []
+
+    id_persona = [x.id for x in query_results]
+    age_persona = [x.age for x in query_results]
+
+    return id_persona, age_persona
